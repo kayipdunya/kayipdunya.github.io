@@ -1,0 +1,218 @@
+
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=Windows-1254">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Roboto;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+span.mwe-math-mathml-inline
+	{mso-style-name:mwe-math-mathml-inline;
+	font-family:"Times New Roman",serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=TR link=blue vlink="#954F72" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%'>                                                                                                </span><span
+style='font-size:72.0pt;line-height:107%;color:#404040'>Analog PID Circuit
+Desing Part-1</span></p>
+
+<p class=MsoNormal style='margin-left:177.0pt;text-indent:36.0pt'><span
+style='font-size:26.0pt;line-height:107%;font-family:Roboto;color:#404040'>In
+this tutorial, we will try to build an analog PID circuit on breadbord and this
+PID circuit will be intagrated to 1 DOFF copter. Ok! Let’s begin with the what
+is the PID circuit?</span></p>
+
+<p class=MsoNormal style='margin-left:177.0pt;line-height:115%'><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>No point in rediscovering the World;</span></p>
+
+<p class=MsoNormal style='margin-left:177.0pt;line-height:115%'><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'> </span><span style='font-size:24.0pt;line-height:115%;
+font-family:Roboto;color:#404040;background:white'>‘’A&nbsp;proportional–integral–derivative
+controller&nbsp;(PID controller&nbsp;or&nbsp;three-term controller) is a&nbsp;</span><span
+style='font-size:26.0pt;line-height:115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Control_loop" title="Control loop"><span
+style='font-size:24.0pt;line-height:115%;color:black;background:white;
+text-decoration:none'><span style='color:black'>control loop</span></span></a></span><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>&nbsp;mechanism employing&nbsp;</span><span style='font-size:
+26.0pt;line-height:115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Feedback" title=Feedback><span
+style='font-size:24.0pt;line-height:115%;color:black;background:white;
+text-decoration:none'><span style='color:black'>feedback</span></span></a></span><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>&nbsp;that is widely used in&nbsp;</span><span
+style='font-size:26.0pt;line-height:115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Industrial_control_system"><span
+style='font-size:24.0pt;line-height:115%;color:black;background:white;
+text-decoration:none'><span style='color:black'>industrial control system<span
+style='color:black'>s</span></span></span></a></span><span style='font-size:
+24.0pt;line-height:115%;font-family:Roboto;color:#404040;background:white'>&nbsp;and
+a variety of other applications requiring continuously modulated control. A PID
+controller continuously calculates an&nbsp;<i>error value</i>&nbsp;</span><span
+class=mwe-math-mathml-inline><span style='font-size:28.0pt;line-height:115%;
+font-family:Roboto;color:#404040;display:none;background:white'>{\displaystyle
+e(t)}</span></span><span style='font-size:24.0pt;line-height:115%;font-family:
+Roboto;color:#404040;background:white'><img border=0 width=32 height=32
+src="Yeni%20Microsoft%20Word%20Belgesi_dosyalar/image001.png" alt="e(t)">&nbsp;as
+the difference between a desired&nbsp;</span><span style='font-size:26.0pt;
+line-height:115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Setpoint_(control_system)"
+title="Process variable"><span style='font-size:24.0pt;line-height:115%;
+color:black;background:white;text-decoration:none'><span style='color:black'>setpoint</span></span></a></span><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>&nbsp;(SP) and a measured&nbsp;</span><span style='font-size:
+26.0pt;line-height:115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Process_variable"><span style='font-size:
+24.0pt;line-height:115%;color:black;background:white;text-decoration:none'><span
+style='color:black'>process variable</span></span></a></span><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>&nbsp;(PV) and applies a correction based on&nbsp;</span><span
+style='font-size:26.0pt;line-height:115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Proportional_control"
+title="Industrial control system"><span style='font-size:24.0pt;line-height:
+115%;color:black;background:white;text-decoration:none'><span style='color:
+black'>proportional</span></span></a></span><span style='font-size:24.0pt;
+line-height:115%;font-family:Roboto;color:#404040;background:white'>,&nbsp;</span><span
+style='font-size:26.0pt;line-height:115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Integral" title=Integral><span
+style='font-size:24.0pt;line-height:115%;color:black;background:white;
+text-decoration:none'><span style='color:black'>integral</span></span></a></span><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>, and&nbsp;</span><span style='font-size:26.0pt;line-height:
+115%;font-family:Roboto;color:#404040'><a
+href="https://en.wikipedia.org/wiki/Derivative" title=Derivative><span
+style='font-size:24.0pt;line-height:115%;color:black;background:white;
+text-decoration:none'><span style='color:black'>derivative</span></span></a></span><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>&nbsp;terms (denoted&nbsp;<i>P</i>,&nbsp;<i>I</i>, and&nbsp;<i>D</i>&nbsp;respectively),
+hence the name.’’  (</span><span style='font-size:24.0pt;line-height:115%;
+font-family:Roboto;color:#4472C4;background:white'>Wikipedia</span><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>)</span></p>
+
+<p class=MsoNormal style='margin-left:177.0pt;line-height:115%'><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>Consider about you want to control the room temprature. What
+do you need to know? First you need to know control mechanism :D then you need
+to get feedback ( current room temprature) otherwise you don’t want to increase
+the temprature more than the desired </span><span style='font-size:24.0pt;
+line-height:115%;font-family:Roboto;color:#404040;background:white'>centigrade.
+There are kinds of circuit shcematic fort his and I chose one of them as below.</span></p>
+
+<p class=MsoNormal style='margin-left:177.0pt;text-indent:35.4pt;line-height:
+115%'><span style='color:#404040;background:white'><img border=0 width=1334
+height=881 id="Resim 2"
+src="Yeni%20Microsoft%20Word%20Belgesi_dosyalar/image002.jpg"></span></p>
+
+<p class=MsoNormal style='margin-left:354.0pt;text-indent:35.4pt;line-height:
+115%'><span style='font-size:12.0pt;line-height:115%;color:#404040;background:
+white'>(</span><span style='font-size:14.0pt;line-height:115%;font-family:Roboto;
+color:#404040;background:white'>Source</span><span style='font-size:12.0pt;
+line-height:115%;color:#404040;background:white'>: </span><span
+style='font-size:12.0pt;line-height:115%;font-family:Roboto;color:#333333;
+background:white'>This schematic is an adaptation of the PID controller
+presented by Professor Jacob in his book,&nbsp;<em>Industrial Control
+Electronics</em>.)</span></p>
+
+<p class=MsoNormal style='margin-left:354.0pt;text-indent:35.4pt;line-height:
+115%'><span style='font-size:12.0pt;line-height:115%;font-family:Roboto;
+color:#333333;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;line-height:115%'><span
+style='font-size:12.0pt;line-height:115%;color:#404040;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:283.2pt;text-indent:35.4pt;line-height:
+115%'><span style='font-size:20.0pt;line-height:115%;font-family:Roboto;
+color:#333333;background:white'>A block diagram showing the functional
+relationships of the PID controller is shown in below</span></p>
+
+<p class=MsoNormal style='margin-left:318.6pt;text-indent:35.4pt;line-height:
+115%'><img border=0 width=993 height=303
+src="Yeni%20Microsoft%20Word%20Belgesi_dosyalar/image003.jpg"></p>
+
+<p class=MsoNormal style='line-height:115%'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:247.8pt;line-height:115%'><span
+style='font-size:22.0pt;line-height:115%;font-family:Roboto'>For more get
+familier this concept we have to know some kind of op-apm circuits like
+Integrator, Proprtional and Differentiator.</span></p>
+
+<p class=MsoNormal style='margin-left:389.4pt;text-indent:35.4pt;line-height:
+115%'><img border=0 width=930 height=853
+src="Yeni%20Microsoft%20Word%20Belgesi_dosyalar/image004.jpg"></p>
+
+<p class=MsoNormal style='margin-left:531.0pt;text-indent:35.4pt;line-height:
+115%'><span style='font-size:18.0pt;line-height:115%'>(Image Source:
+https://maker.robotistan.com/opamp/)</span></p>
+
+<p class=MsoNormal style='margin-left:283.2pt;line-height:115%'><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>As you see, there are many op-amp circuits. I decided to use
+LM741 op-amp to build and implement PID circuit. </span></p>
+
+<p class=MsoNormal style='margin-left:283.2pt;line-height:115%'><span
+style='font-size:24.0pt;line-height:115%;font-family:Roboto;color:#404040;
+background:white'>It is a classical op-amp and there are more useful op-amps
+than LM741.</span></p>
+
+<p class=MsoNormal style='line-height:115%'><span style='font-family:Roboto;
+color:#404040;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal style='line-height:115%'><span style='font-family:Roboto;
+color:#404040;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:459.6pt;text-indent:36.0pt;line-height:
+115%'><img border=0 width=704 height=505
+src="Yeni%20Microsoft%20Word%20Belgesi_dosyalar/image005.jpg"
+alt="LM741 Entegre , Lmd Entegre , 1,19 TL , Satın Al"></p>
+
+<p class=MsoNormal style='margin-left:424.2pt;text-indent:35.4pt;line-height:
+115%'><span style='font-size:16.0pt;line-height:115%;font-family:Roboto'>       
+You can check and have a look this diagram while you are building circuit. </span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>
